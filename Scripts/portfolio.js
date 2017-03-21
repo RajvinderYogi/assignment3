@@ -1,6 +1,6 @@
 /*Author Name= Rajvinder Singh Yogi
 Student Number=200353207
-Website= Mini-portfolio
+Website= Mini-portfolio(assignment3)
 File Name= portfolio.js
 This file includes all the styling properties which makes this website attractive and Improve the design
 
@@ -14,9 +14,7 @@ This file includes all the styling properties which makes this website attractiv
 
 switch(document.title){
 case"Biography::Raj Yogi":
-let heading = document.getElementById("heading");
-let title = document.getElementById("title");
-let paragraph = document.getElementById("paragraph");
+
 let data={};
 
 let XHR =new XMLHttpRequest();
@@ -29,9 +27,11 @@ XHR.onreadystatechange=function(){
     if((this.readyState === 4)&&(this.status===200)){
         data = JSON.parse(XHR.responseText);
 
-        
+        let heading = document.getElementById("heading");
         heading.innerHTML=data.information.MyName;
+        let title = document.getElementById("title");
         title.innerHTML=data.information.WebDev;
+        let paragraph = document.getElementById("paragraph");        
         paragraph.innerHTML=data.information.BioPara;
     }
 };
@@ -39,16 +39,10 @@ break;
 
 
 case "Portfolio::Raj Yogi":
-
-
 let project={};
-
 let portfolioXHR =new XMLHttpRequest();
-
 portfolioXHR.open("GET","../paragraphs.json", true);
-
 portfolioXHR.send();
-
 portfolioXHR.onreadystatechange=function(){
     if((this.readyState === 4)&&(this.status===200)){
         project = JSON.parse(portfolioXHR.responseText);
@@ -89,12 +83,23 @@ break;
 
 case"Contact Me::Raj Yogi":
 
-console.info("Page Title: " + document.title);
 
-// Contact page heading
-let ContactMe = document.getElementById("ContactMe");
-let myHeading="Contact Me";
-ContactMe.textContent=myHeading;
+let contact={};
+
+let ContactXHR =new XMLHttpRequest();
+
+ContactXHR.open("GET","../paragraphs.json", true);
+
+ContactXHR.send();
+
+ContactXHR.onreadystatechange=function(){
+    if((this.readyState === 4)&&(this.status===200)){
+        contact = JSON.parse(ContactXHR.responseText);
+
+        let ContactMe = document.getElementById("ContactMe");
+        ContactMe.innerHTML=contact.information.ContactHeading;
+    }
+};
 
 
 submit.addEventListener("click",function display(event){
