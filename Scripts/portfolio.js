@@ -2,7 +2,7 @@
 Student Number=200353207
 Website= Mini-portfolio(assignment3)
 File Name= portfolio.js
-This file includes all the styling properties which makes this website attractive and Improve the design
+This file includes all the styling properties which makes this website more functional.
 
 -----------------------------------------------------------------------------------------------------------*/
 
@@ -19,7 +19,7 @@ let data={};
 
 let XHR =new XMLHttpRequest();
 
-XHR.open("GET","../paragraphs.json", true);
+XHR.open("GET","Scripts/paragraphs.json", true);
 
 XHR.send();
 
@@ -41,7 +41,7 @@ break;
 case "Portfolio::Raj Yogi":
 let project={};
 let portfolioXHR =new XMLHttpRequest();
-portfolioXHR.open("GET","../paragraphs.json", true);
+portfolioXHR.open("GET","Scripts/paragraphs.json", true);
 portfolioXHR.send();
 portfolioXHR.onreadystatechange=function(){
     if((this.readyState === 4)&&(this.status===200)){
@@ -88,7 +88,7 @@ let contact={};
 
 let ContactXHR =new XMLHttpRequest();
 
-ContactXHR.open("GET","../paragraphs.json", true);
+ContactXHR.open("GET","Scripts/paragraphs.json", true);
 
 ContactXHR.send();
 
