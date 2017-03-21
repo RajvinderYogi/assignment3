@@ -14,74 +14,77 @@ This file includes all the styling properties which makes this website attractiv
 
 switch(document.title){
 case"Biography::Raj Yogi":
-// Name heading content to home page
-var MyName = document.getElementById("MyName");
-var myContent= "RAJVINDER SINGH YOGI";
-MyName.textContent=myContent;
+let heading = document.getElementById("heading");
+let title = document.getElementById("title");
+let paragraph = document.getElementById("paragraph");
+let data={};
 
-//Sub heading content to home page
-var WebDeveloper = document.getElementById("WebDev");
-var myContent="WEB DEVELOPER | BIOGRAPHY";
-WebDev.textContent=myContent;
+let XHR =new XMLHttpRequest();
 
+XHR.open("GET","../paragraphs.json", true);
 
-// Bio Paragraph content to home Page
+XHR.send();
 
-//step1- create a reference to an element
-var Biography = document.getElementById("BioPara");
-//step2- create a variable that contain content
-var myContent = "I’m a web developer. I spend my whole day, practically every day, experimenting with HTML, CSS, and JavaScript; I build websites that delight and inform. I do it well. I enjoy work that challenges me to learn something new and stretch in a different direction. I do my best to stay on top of changes in the state of the art so that I can meet challenges with tools well suited to the job at hand. I moved to Alberta from India a year ago; have been studying and learning the language at Gerogian College in Barrie for the time being.";
-//step3- assign the variable with your content to the refrence variable
-BioPara.textContent = myContent;
+XHR.onreadystatechange=function(){
+    if((this.readyState === 4)&&(this.status===200)){
+        data = JSON.parse(XHR.responseText);
+
+        
+        heading.innerHTML=data.information.MyName;
+        title.innerHTML=data.information.WebDev;
+        paragraph.innerHTML=data.information.BioPara;
+    }
+};
 break;
 
 
 case "Portfolio::Raj Yogi":
-//project1 portfolio content starts
-var headingProject1 = document.getElementById("headingProject1");
-var ContentPortfolio="Live Website";
-headingProject1.textContent=ContentPortfolio;
 
-var subheadingProject1 = document.getElementById("subheadingProject1");
-var ContentPortfolio="Broadway Animal Hospital";
-subheadingProject1.textContent=ContentPortfolio;
 
-var project1Para = document.getElementById("project1Para");
-var ContentPortfolio="I designed this website in wordpress. Owner(my uncle) of website is a veterinarian and owns an animal clinic in Orangeville. This website has a service to book appointments online. This website helped Dr. Yogi to improve their business in many ways.";
-project1Para.textContent=ContentPortfolio;
-//project1 portfolio content ends
+let project={};
 
-// -----------------------------------------------------------------------------------------------------------
+let portfolioXHR =new XMLHttpRequest();
 
-//project2 portfolio content starts
-var headingProject2 = document.getElementById("headingProject2");
-var ContentPortfolio="Movie Poster";
-headingProject2.textContent=ContentPortfolio;
+portfolioXHR.open("GET","../paragraphs.json", true);
 
-var subheadingProject2 = document.getElementById("subheadingProject2");
-var ContentPortfolio="Assignmet 1st Semester";
-subheadingProject2.textContent=ContentPortfolio;
+portfolioXHR.send();
 
-var project2Para = document.getElementById("project2Para");
-var ContentPortfolio="This movie-poster was designed by me in previous semester using CSS and HTML. 'Scott Mcrindlle' guided me in this project. It has the link to original website of 'The Fast and Furious' movie. It helped me alot to learn new properties of CSS. ";
-project2Para.textContent=ContentPortfolio;
-//project2 portfolio content ends
+portfolioXHR.onreadystatechange=function(){
+    if((this.readyState === 4)&&(this.status===200)){
+        project = JSON.parse(portfolioXHR.responseText);
+        //project1 portfolio content starts
+        let headingProject1 = document.getElementById("headingProject1");
+        headingProject1.innerHTML=project.information.FirstHeading;
+        let subheadingProject1 = document.getElementById("subheadingProject1");
+        subheadingProject1.innerHTML=project.information.FirstSubHeading;
+        let project1info = document.getElementById("project1info");
+        project1info.innerHTML=project.information.Project1Para;
+        //project1 portfolio content ends
+        // -----------------------------------------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------------------------------------------
+        //project2 portfolio content starts
+        let headingProject2 = document.getElementById("headingProject2");
+        headingProject2.innerHTML=project.information.SecondHeading;
+        let subheadingProject2 = document.getElementById("subheadingProject2");
+        subheadingProject2.innerHTML=project.information.SecondSubHeading;
+        let project2info = document.getElementById("project2info");
+         project2info.innerHTML=project.information.Project2Para;
+         //project2 portfolio content ends
 
-//project3 portfolio content starts
-var headingProject3 = document.getElementById("headingProject3");
-var ContentPortfolio="Photography";
-headingProject3.textContent=ContentPortfolio;
+        // ----------------------------------------------------------------------------------------------------------------
 
-var subheadingProject3 = document.getElementById("subheadingProject3");
-var ContentPortfolio="Exceptional Photography";
-subheadingProject3.textContent=ContentPortfolio;
+        //project3 portfolio content starts
+        let headingProject3 = document.getElementById("headingProject3");
+        headingProject3.innerHTML=project.information.ThirdHeading;
+        let subheadingProject3 = document.getElementById("subheadingProject3");
+        subheadingProject3.innerHTML=project.information.ThirdSubHeading;
+        let project3info = document.getElementById("project3info");
+        project3info.innerHTML=project.information.Project3Para;
+        //project3 portfolio content ends
+    }
+};
 
-var project3Para = document.getElementById("project3Para");
-var ContentPortfolio="I took this picture nearby Bell fountain. This picture is one of the finest Photography done by by me. It was a raining when I took this picture. This picture got reward from some professional photogrphers too. ";
-project3Para.textContent=ContentPortfolio;
-//project3 portfolio content ends
+
 break;
 
 case"Contact Me::Raj Yogi":
